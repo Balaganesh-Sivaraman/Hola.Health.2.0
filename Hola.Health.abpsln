@@ -1,0 +1,349 @@
+{
+  "id": "9caa1b3f-ad41-47b9-b214-744b46b040a2",
+  "template": "microservice",
+  "versions": {
+    "AbpFramework": "8.3.2",
+    "AbpCommercial": "8.3.2",
+    "AbpStudio": "0.9.4"
+  },
+  "folders": {
+    "items": {
+      "services": {},
+      "apps": {},
+      "gateways": {}
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "modules": {
+    "Hola.Health.AdministrationService": {
+      "path": "services/administration/Hola.Health.AdministrationService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.IdentityService": {
+      "path": "services/identity/Hola.Health.IdentityService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.Web.Public": {
+      "path": "apps/public/Hola.Health.Web.Public.abpmdl",
+      "folder": "apps"
+    },
+    "Hola.Health.PublicGateway": {
+      "path": "gateways/public/Hola.Health.PublicGateway.abpmdl",
+      "folder": "gateways"
+    },
+    "Hola.Health.SaasService": {
+      "path": "services/saas/Hola.Health.SaasService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.ChatService": {
+      "path": "services/chat/Hola.Health.ChatService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.AuditLoggingService": {
+      "path": "services/audit-logging/Hola.Health.AuditLoggingService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.GdprService": {
+      "path": "services/gdpr/Hola.Health.GdprService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.FileManagementService": {
+      "path": "services/file-management/Hola.Health.FileManagementService.abpmdl",
+      "folder": "services"
+    },
+    "Hola.Health.AuthServer": {
+      "path": "apps/auth-server/Hola.Health.AuthServer.abpmdl",
+      "folder": "apps"
+    },
+    "Hola.Health.WebGateway": {
+      "path": "gateways/web/Hola.Health.WebGateway.abpmdl",
+      "folder": "gateways"
+    }
+  },
+  "k8sProfiles": {
+    "local": {
+      "path": "etc/abp-studio/k8s-profiles/local.abpk8s.json"
+    }
+  },
+  "commands": {
+    "helmBuildDotnetImage": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART",
+        "HELM_SUB_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART",
+        "HELM_SUB_CHART"
+      ],
+      "displayName": "Build Docker Image(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./build-image.ps1 -ProjectPath {{metadata.projectPath}} -ImageName {{metadata.imageName}} -ProjectType {{metadata.projectType}}",
+      "condition": "{{metadata.projectPath != null && metadata.imageName != null && metadata.projectType != null}}"
+    },
+    "helmInstallChart": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART"
+      ],
+      "displayName": "Install Chart(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./install.ps1 -ChartName {{chart.name}} -Namespace {{profile.namespace}} -ReleaseName {{chart.name}}-{{profile.name}} -DotnetEnvironment {{metadata.dotnetEnvironment}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to install the chart(s) for the profile {{ profile.name }}?"
+    },
+    "helmUninstallChart": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT",
+        "HELM_MAIN_CHART"
+      ],
+      "executionTargets": [
+        "HELM_MAIN_CHART"
+      ],
+      "displayName": "Uninstall Chart(s)",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./uninstall.ps1 -Namespace {{profile.namespace}} -ReleaseName {{chart.name}}-{{profile.name}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to uninstall the chart(s) for the profile {{profile.name}}?"
+    },
+    "kubernetesRedeploy": {
+      "triggerTargets": [
+        "KUBERNETES_SERVICE"
+      ],
+      "executionTargets": [
+        "KUBERNETES_SERVICE"
+      ],
+      "displayName": "Redeploy",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./build-image.ps1 -ProjectPath {{chart.metadata.projectPath}} -ImageName {{chart.metadata.imageName}} -ProjectType {{chart.metadata.projectType}} &&& ./install.ps1 -ChartName {{mainChart.name}} -Namespace {{profile.namespace}} -ReleaseName {{mainChart.name}}-{{profile.name}} -DotnetEnvironment {{mainChart.metadata.dotnetEnvironment}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}",
+      "requireConfirmation": "true",
+      "confirmationText": "Are you sure to redeploy the related chart '{{chart.name}}' for the service '{{name}}'?",
+      "condition": "{{chart != null && chart.metadata.projectPath != null && chart.metadata.imageName != null && chart.metadata.projectType != null}}"
+    },
+    "createTlsSecret": {
+      "triggerTargets": [
+        "HELM_CHARTS_ROOT"
+      ],
+      "executionTargets": [
+        "HELM_CHARTS_ROOT"
+      ],
+      "displayName": "Create Self-Signed TLS secret",
+      "workingDirectory": "etc/helm",
+      "terminalCommand": "./create-tls-secrets.ps1 -Namespace {{profile.namespace}} {{~if metadata.k8ssuffix}} -User {{metadata.k8ssuffix}}{{end}}"
+    }
+  },
+  "helm": {
+    "charts": {
+      "health": {
+        "name": "health",
+        "path": "etc/helm/health",
+        "charts": {
+          "administration": {
+            "name": "administration",
+            "path": "etc/helm/health/charts/administration",
+            "metadata": {
+              "projectPath": "../../services/administration/Hola.Health.AdministrationService/Hola.Health.AdministrationService.csproj",
+              "imageName": "health/administration",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-administration$"
+            ]
+          },
+          "angular": {
+            "name": "angular",
+            "path": "etc/helm/health/charts/angular",
+            "metadata": {
+              "projectPath": "../../apps/angular",
+              "imageName": "health/angular",
+              "projectType": "angular"
+            },
+            "services": [
+              ".*-angular$"
+            ]
+          },
+          "auditlogging": {
+            "name": "auditlogging",
+            "path": "etc/helm/health/charts/auditlogging",
+            "metadata": {
+              "projectPath": "../../services/audit-logging/Hola.Health.AuditLoggingService/Hola.Health.AuditLoggingService.csproj",
+              "imageName": "health/auditlogging",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-auditlogging$"
+            ]
+          },
+          "authserver": {
+            "name": "authserver",
+            "path": "etc/helm/health/charts/authserver",
+            "metadata": {
+              "projectPath": "../../apps/auth-server/Hola.Health.AuthServer/Hola.Health.AuthServer.csproj",
+              "imageName": "health/authserver",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-authserver$"
+            ]
+          },
+          "chat": {
+            "name": "chat",
+            "path": "etc/helm/health/charts/chat",
+            "metadata": {
+              "projectPath": "../../services/chat/Hola.Health.ChatService/Hola.Health.ChatService.csproj",
+              "imageName": "health/chat",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-chat$"
+            ]
+          },
+          "elasticsearch": {
+            "name": "elasticsearch",
+            "path": "etc/helm/health/charts/elasticsearch",
+            "metadata": {}
+          },
+          "filemanagement": {
+            "name": "filemanagement",
+            "path": "etc/helm/health/charts/filemanagement",
+            "metadata": {
+              "projectPath": "../../services/file-management/Hola.Health.FileManagementService/Hola.Health.FileManagementService.csproj",
+              "imageName": "health/filemanagement",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-filemanagement"
+            ]
+          },
+          "gdpr": {
+            "name": "gdpr",
+            "path": "etc/helm/health/charts/gdpr",
+            "metadata": {
+              "projectPath": "../../services/gdpr/Hola.Health.GdprService/Hola.Health.GdprService.csproj",
+              "imageName": "health/gdpr",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-gdpr$"
+            ]
+          },
+          "grafana": {
+            "name": "grafana",
+            "path": "etc/helm/health/charts/grafana",
+            "metadata": {}
+          },
+          "identity": {
+            "name": "identity",
+            "path": "etc/helm/health/charts/identity",
+            "metadata": {
+              "projectPath": "../../services/identity/Hola.Health.IdentityService/Hola.Health.IdentityService.csproj",
+              "imageName": "health/identity",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-identity$"
+            ]
+          },
+          "kibana": {
+            "name": "kibana",
+            "path": "etc/helm/health/charts/kibana",
+            "metadata": {}
+          },
+          "postgresql": {
+            "name": "postgresql",
+            "path": "etc/helm/health/charts/postgresql"
+          },
+          "prometheus": {
+            "name": "prometheus",
+            "path": "etc/helm/health/charts/prometheus",
+            "metadata": {}
+          },
+          "publicgateway": {
+            "name": "publicgateway",
+            "path": "etc/helm/health/charts/publicgateway",
+            "metadata": {
+              "projectPath": "../../gateways/public/Hola.Health.PublicGateway/Hola.Health.PublicGateway.csproj",
+              "imageName": "health/publicgateway",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-publicgateway$"
+            ]
+          },
+          "rabbitmq": {
+            "name": "rabbitmq",
+            "path": "etc/helm/health/charts/rabbitmq"
+          },
+          "redis": {
+            "name": "redis",
+            "path": "etc/helm/health/charts/redis"
+          },
+          "saas": {
+            "name": "saas",
+            "path": "etc/helm/health/charts/saas",
+            "metadata": {
+              "projectPath": "../../services/saas/Hola.Health.SaasService/Hola.Health.SaasService.csproj",
+              "imageName": "health/saas",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-saas$"
+            ]
+          },
+          "webgateway": {
+            "name": "webgateway",
+            "path": "etc/helm/health/charts/webgateway",
+            "metadata": {
+              "projectPath": "../../gateways/web/Hola.Health.WebGateway/Hola.Health.WebGateway.csproj",
+              "imageName": "health/webgateway",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-webgateway$"
+            ]
+          },
+          "webpublic": {
+            "name": "webpublic",
+            "path": "etc/helm/health/charts/webpublic",
+            "metadata": {
+              "projectPath": "../../apps/public/Hola.Health.Web.Public/Hola.Health.Web.Public.csproj",
+              "imageName": "health/webpublic",
+              "projectType": "dotnet"
+            },
+            "services": [
+              ".*-webpublic"
+            ]
+          }
+        },
+        "metadata": {}
+      }
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+        "^/metrics$"
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "microservice",
+    "createdAbpStudioVersion": "0.9.4",
+    "uiFramework": "angular",
+    "databaseProvider": "ef",
+    "databaseManagementSystem": "postgresql",
+    "theme": "basic",
+    "themeStyle": "",
+    "mobileFramework": "none",
+    "progressiveWebApp": "",
+    "publicWebsite": "true",
+    "socialLogin": ""
+  }
+}

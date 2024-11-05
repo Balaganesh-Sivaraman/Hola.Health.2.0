@@ -1,0 +1,4 @@
+image:
+  repository: "health/angular"
+  tag: "latest"
+  pullPolicy: IfNotPresent

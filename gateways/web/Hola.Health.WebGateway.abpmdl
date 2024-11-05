@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "Hola.Health.WebGateway": {
+      "path": "Hola.Health.WebGateway/Hola.Health.WebGateway.abppkg"
+    }
+  }
+}

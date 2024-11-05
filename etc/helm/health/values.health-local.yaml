@@ -1,0 +1,23 @@
+global:
+  hosts:
+    authserver: "[RELEASE_NAME]-authserver"
+    webgateway: "[RELEASE_NAME]-webgateway"
+    kibana: "[RELEASE_NAME]-kibana"
+    grafana: "[RELEASE_NAME]-grafana"
+    angular: "[RELEASE_NAME]-angular"
+    publicgateway: "[RELEASE_NAME]-publicgateway"
+    webpublic: "[RELEASE_NAME]-webpublic"
+  connectionStrings:
+    administration: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_Administration;User ID=postgres;Password=myPassword;Timeout=240;"
+    blobStoring: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_BlobStoring;User ID=postgres;Password=myPassword;Timeout=240;"
+    identity: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_Identity;User ID=postgres;Password=myPassword;Timeout=240;"
+    saas: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_SaasService;User ID=postgres;Password=myPassword;Timeout=240;"
+    auditLogging: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_AuditLoggingService;User ID=postgres;Password=myPassword;Timeout=240;"
+    gdpr: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_GdprService;User ID=postgres;Password=myPassword;Timeout=240;"
+    filemanagement: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_FileManagementService;User ID=postgres;Password=myPassword;Timeout=240;"
+    chat: "Host=[RELEASE_NAME]-postgresql;Port=5432;Database=Health_ChatService;User ID=postgres;Password=myPassword;Timeout=240;"
+  dotnetEnvironment: "Staging"
+  enablePII: "true"
+  stringEncryptionDefaultPassPhrase: "Ah2fAKtVArFHmHo7"
+  abpStudioClient:
+    isLinkEnabled: "true"

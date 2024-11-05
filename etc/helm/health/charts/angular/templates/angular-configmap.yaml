@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-configmap
+data:
+  dynamic-env.json: |-
+    {
+        "production": "true",
+        "application": {
+            "baseUrl": "{{ include "health.hosts.angular" . }}",
+            "name": "Health",
+            "logoUrl": ""
+        },
+        "oAuthConfig": {
+            "issuer": "{{ include "health.hosts.authserver" . }}",
+            "redirectUri": "{{ include "health.hosts.angular" . }}",
+            "requireHttps": "true",
+            "clientId": "Angular",
+            "responseType": "code",
+            "scope": "offline_access openid profile roles email phone AuthServer IdentityService AdministrationService SaasService AuditLoggingService GdprService ChatService FileManagementService",
+            "strictDiscoveryDocumentValidation": false,
+            "skipIssuerCheck": true
+        },
+        "apis": {
+            "default": {
+                "url": "{{ include "health.hosts.webgateway" . }}",
+                "rootNamespace": "Health"
+            }
+        }
+    }

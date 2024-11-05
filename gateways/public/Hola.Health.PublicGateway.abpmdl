@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "Hola.Health.PublicGateway": {
+      "path": "Hola.Health.PublicGateway/Hola.Health.PublicGateway.abppkg"
+    }
+  }
+}

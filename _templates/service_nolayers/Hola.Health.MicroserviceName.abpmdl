@@ -1,0 +1,37 @@
+{
+  "packages": {
+    "Hola.Health.MicroserviceName": {
+      "path": "Hola.Health.MicroserviceName/Hola.Health.MicroserviceName.abppkg"
+    },
+{{~ if config.include_tests ~}}
+    "Hola.Health.MicroserviceName.Tests": {
+      "path": "Hola.Health.MicroserviceName.Tests/Hola.Health.MicroserviceName.Tests.abppkg"
+    },
+{{~ end ~}}
+    "Hola.Health.MicroserviceName.Contracts": {
+      "path": "Hola.Health.MicroserviceName.Contracts/Hola.Health.MicroserviceName.Contracts.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.PermissionManagement": {
+      "version": "{{common.abp_framework_version}}",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "{{common.abp_framework_version}}",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "{{common.abp_framework_version}}",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "{{common.abp_framework_version}}",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "{{common.abp_commercial_version}}",
+      "isInstalled": true
+    }
+  }
+}

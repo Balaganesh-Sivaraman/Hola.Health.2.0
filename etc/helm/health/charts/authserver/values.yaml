@@ -1,0 +1,4 @@
+image:
+  repository: "health/authserver"
+  tag: "latest"
+  pullPolicy: IfNotPresent

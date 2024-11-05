@@ -1,0 +1,13 @@
+{
+  "packages": {
+    "Hola.Health.Web.Public": {
+      "path": "Hola.Health.Web.Public/Hola.Health.Web.Public.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.Account.Pro": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

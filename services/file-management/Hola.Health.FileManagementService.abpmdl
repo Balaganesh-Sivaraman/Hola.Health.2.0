@@ -1,0 +1,43 @@
+{
+  "packages": {
+    "Hola.Health.FileManagementService": {
+      "path": "Hola.Health.FileManagementService/Hola.Health.FileManagementService.abppkg"
+    },
+    "Hola.Health.FileManagementService.Contracts": {
+      "path": "Hola.Health.FileManagementService.Contracts/Hola.Health.FileManagementService.Contracts.abppkg"
+    },
+    "Hola.Health.FileManagementService.Tests": {
+      "path": "Hola.Health.FileManagementService.Tests/Hola.Health.FileManagementService.Tests.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.PermissionManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.FileManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

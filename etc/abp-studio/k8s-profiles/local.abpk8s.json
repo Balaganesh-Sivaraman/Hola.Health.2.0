@@ -1,0 +1,15 @@
+{
+  "config": {
+    "context": "docker-desktop",
+    "namespace": "health-local"
+  },
+  "metadata": {
+    "dotnetEnvironment": "Staging"
+  },
+  "services": {
+    "health-local-identity": {
+    },
+    "health-local-web": {
+    }
+  }
+}

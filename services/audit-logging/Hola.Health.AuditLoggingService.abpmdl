@@ -1,0 +1,39 @@
+{
+  "packages": {
+    "Hola.Health.AuditLoggingService": {
+      "path": "Hola.Health.AuditLoggingService/Hola.Health.AuditLoggingService.abppkg"
+    },
+    "Hola.Health.AuditLoggingService.Contracts": {
+      "path": "Hola.Health.AuditLoggingService.Contracts/Hola.Health.AuditLoggingService.Contracts.abppkg"
+    },
+    "Hola.Health.AuditLoggingService.Tests": {
+      "path": "Hola.Health.AuditLoggingService.Tests/Hola.Health.AuditLoggingService.Tests.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.PermissionManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

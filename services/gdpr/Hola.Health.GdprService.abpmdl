@@ -1,0 +1,43 @@
+{
+  "packages": {
+    "Hola.Health.GdprService": {
+      "path": "Hola.Health.GdprService/Hola.Health.GdprService.abppkg"
+    },
+    "Hola.Health.GdprService.Contracts": {
+      "path": "Hola.Health.GdprService.Contracts/Hola.Health.GdprService.Contracts.abppkg"
+    },
+    "Hola.Health.GdprService.Tests": {
+      "path": "Hola.Health.GdprService.Tests/Hola.Health.GdprService.Tests.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.PermissionManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Gdpr": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "packages": {
+    "Hola.Health.IdentityService": {
+      "path": "Hola.Health.IdentityService/Hola.Health.IdentityService.abppkg"
+    },
+    "Hola.Health.IdentityService.Contracts": {
+      "path": "Hola.Health.IdentityService.Contracts/Hola.Health.IdentityService.Contracts.abppkg"
+    },
+    "Hola.Health.IdentityService.Tests": {
+      "path": "Hola.Health.IdentityService.Tests/Hola.Health.IdentityService.Tests.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.Identity.Pro": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict.Pro": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict.Pro": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

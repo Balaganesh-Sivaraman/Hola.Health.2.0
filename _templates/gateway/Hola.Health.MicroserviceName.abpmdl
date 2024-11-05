@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "Hola.Health.MicroserviceName": {
+      "path": "Hola.Health.MicroserviceName/Hola.Health.MicroserviceName.abppkg"
+    }
+  }
+}

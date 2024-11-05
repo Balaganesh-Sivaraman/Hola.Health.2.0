@@ -1,0 +1,159 @@
+{
+  "folders": {
+    "items": {
+      "services": {
+        "execution": {
+          "order": 2
+        }
+      },
+      "infrastructure": {
+        "execution": {
+          "order": 3
+        }
+      },
+      "apps": {
+        "execution": {
+          "order": 0
+        }
+      },
+      "gateways": {
+        "execution": {
+          "order": 1
+        }
+      }
+    }
+  },
+  "applications": {
+    "Hola.Health.AuthServer": {
+      "type": "dotnet-project",
+      "path": "../../../apps/auth-server/Hola.Health.AuthServer/Hola.Health.AuthServer.csproj",
+      "launchUrl": "http://localhost:44340",
+      "kubernetesService": ".*-authserver$",
+      "folder": "apps",
+      "execution": {
+        "order": 3
+      }
+    },
+    "Hola.Health.Web.Public": {
+      "type": "dotnet-project",
+      "path": "../../../apps/public/Hola.Health.Web.Public/Hola.Health.Web.Public.csproj",
+      "launchUrl": "http://localhost:44314",
+      "kubernetesService": ".*-webpublic$",
+      "folder": "apps",
+      "execution": {
+        "order": 1
+      }
+    },
+    "Hola.Health.PublicGateway": {
+      "type": "dotnet-project",
+      "path": "../../../gateways/public/Hola.Health.PublicGateway/Hola.Health.PublicGateway.csproj",
+      "launchUrl": "http://localhost:44369",
+      "kubernetesService": ".*-webpublic$",
+      "folder": "gateways",
+      "execution": {
+        "order": 1
+      }
+    },
+    "Hola.Health.SaasService": {
+      "type": "dotnet-project",
+      "path": "../../../services/saas/Hola.Health.SaasService/Hola.Health.SaasService.csproj",
+      "launchUrl": "http://localhost:44335",
+      "folder": "services",
+      "kubernetesService": ".*-saas$",
+      "execution": {
+        "order": 4
+      }
+    },
+    "Hola.Health.AuditLoggingService": {
+      "type": "dotnet-project",
+      "path": "../../../services/audit-logging/Hola.Health.AuditLoggingService/Hola.Health.AuditLoggingService.csproj",
+      "launchUrl": "http://localhost:44389",
+      "folder": "services",
+      "kubernetesService": ".*-auditlogging$",
+      "execution": {
+        "order": 0
+      }
+    },
+    "Hola.Health.GdprService": {
+      "type": "dotnet-project",
+      "path": "../../../services/gdpr/Hola.Health.GdprService/Hola.Health.GdprService.csproj",
+      "launchUrl": "http://localhost:44393",
+      "folder": "services",
+      "kubernetesService": ".*-gdpr$",
+      "execution": {
+        "order": 1
+      }
+    },
+    "Hola.Health.FileManagementService": {
+      "type": "dotnet-project",
+      "path": "../../../services/file-management/Hola.Health.FileManagementService/Hola.Health.FileManagementService.csproj",
+      "launchUrl": "http://localhost:44301",
+      "folder": "services",
+      "kubernetesService": ".*-filemanagement",
+      "execution": {
+        "order": 2
+      }
+    },
+    "Hola.Health.ChatService": {
+      "type": "dotnet-project",
+      "path": "../../../services/chat/Hola.Health.ChatService/Hola.Health.ChatService.csproj",
+      "launchUrl": "http://localhost:44354",
+      "folder": "services",
+      "kubernetesService": ".*-chat$",
+      "execution": {
+        "order": 3
+      }
+    },
+    "Hola.Health.WebGateway": {
+      "type": "dotnet-project",
+      "path": "../../../gateways/web/Hola.Health.WebGateway/Hola.Health.WebGateway.csproj",
+      "launchUrl": "http://localhost:44322",
+      "kubernetesService": ".*-webgateway$",
+      "folder": "gateways",
+      "execution": {
+        "order": 2
+      }
+    },
+    "Hola.Health.Angular": {
+      "type": "cli",
+      "workingDirectory": "../../../apps/angular",
+      "startCommand": "./start.ps1",
+      "launchUrl": "http://localhost:4200",
+      "kubernetesService": ".*-angular$",
+      "folder": "apps",
+      "execution": {
+        "order": 2
+      }
+    },
+    "Hola.Health.AdministrationService": {
+      "type": "dotnet-project",
+      "path": "../../../services/administration/Hola.Health.AdministrationService/Hola.Health.AdministrationService.csproj",
+      "launchUrl": "http://localhost:44373",
+      "kubernetesService": ".*-administration$",
+      "folder": "services",
+      "execution": {
+        "order": 6
+      }
+    },
+    "Hola.Health.IdentityService": {
+      "type": "dotnet-project",
+      "path": "../../../services/identity/Hola.Health.IdentityService/Hola.Health.IdentityService.csproj",
+      "launchUrl": "http://localhost:44367",
+      "kubernetesService": ".*-identity$",
+      "folder": "services",
+      "execution": {
+        "order": 5
+      }
+    },
+    "Docker-Dependencies": {
+      "type": "cli",
+      "startCommand": "./up.ps1",
+      "stopCommand": "./down.ps1",
+      "workingDirectory": "../../docker",
+      "folder": "infrastructure",
+      "execution": {
+        "order": 0
+      }
+    }
+  }
+}

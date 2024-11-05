@@ -1,0 +1,39 @@
+{
+  "packages": {
+    "Hola.Health.SaasService": {
+      "path": "Hola.Health.SaasService/Hola.Health.SaasService.abppkg"
+    },
+    "Hola.Health.SaasService.Contracts": {
+      "path": "Hola.Health.SaasService.Contracts/Hola.Health.SaasService.Contracts.abppkg"
+    },
+    "Hola.Health.SaasService.Tests": {
+      "path": "Hola.Health.SaasService.Tests/Hola.Health.SaasService.Tests.abppkg"
+    }
+  },
+  "imports": {
+    "Volo.Abp.PermissionManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.BlobStoring.Database": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Abp.LanguageManagement": {
+      "version": "8.3.2",
+      "isInstalled": true
+    },
+    "Volo.Saas": {
+      "version": "8.3.2",
+      "isInstalled": true
+    }
+  }
+}

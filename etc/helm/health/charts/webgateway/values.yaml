@@ -1,0 +1,6 @@
+image:
+  repository: "health/webgateway"
+  tag: "latest"
+  pullPolicy: "IfNotPresent"
+swagger:
+  isEnabled: "true"

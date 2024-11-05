@@ -1,0 +1,86 @@
+version: '3.7'
+
+volumes:
+  health_sqldata:
+  health_elasticdata:
+  health_rabbitmq:
+networks:
+  health:
+    external: true
+
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.12.7-management-alpine
+    volumes:
+      - health_rabbitmq:/var/lib/rabbitmq
+    networks:
+      - health
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  redis:
+    container_name: redis
+    image: redis:7.2.2-alpine
+    networks:
+      - health
+    ports:
+      - "6379:6379"
+      
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.4
+    volumes:
+      - health_elasticdata:/usr/share/elasticsearch/data
+    networks:
+      - health
+    environment:
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+    ports:
+      - "9200:9200"
+      
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:8.10.4
+    depends_on:
+      - elasticsearch
+    networks:
+      - health
+    environment:
+      - ELASTICSEARCH_URL=http://host.docker.internal:9200
+    ports: 
+      - "5601:5601"
+  postgres:
+    image: postgres:14-alpine
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=myPassword
+      - POSTGRES_USER=postgres
+    ports:
+      - "5432:5432"
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:10.2.0
+    volumes:
+      - ./grafana/storage:/var/lib/grafana
+    networks:
+      - health
+    ports:
+      - "3001:3000"
+      
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.47.2
+    volumes:
+      - ./prometheus/storage:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - health
+    ports:
+      - "9090:9090"
